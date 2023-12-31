@@ -6,7 +6,7 @@ import { toyService } from "../services/toy.service.js"
 import { showErrorMsg } from "../services/event-bus.service.js"
 import { useNavigate, useParams } from "react-router-dom"
 
-export function ToyDetails() {
+export function ContactDetails() {
     const [toy, setToy] = useState(null)
     const { toyId } = useParams()
     const navigate = useNavigate()
