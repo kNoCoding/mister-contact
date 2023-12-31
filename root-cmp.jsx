@@ -3,6 +3,7 @@ const { Route, Routes } = ReactRouterDOM
 
 
 import { HomePage } from './pages/HomePage.jsx'
+import { ContactDetails } from './cmps/ContactDetails.jsx'
 import { ContactIndex } from './pages/ContactIndex.jsx'
 
 
