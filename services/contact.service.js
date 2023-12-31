@@ -3,14 +3,14 @@ import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
 
-const STORAGE_KEY = 'carDB'
+const STORAGE_KEY = 'contactDB'
 
-export const carService = {
+export const contactService = {
     query,
     getById,
     save,
     remove,
-    getEmptyCar,
+    getEmptyContact,
     getDefaultFilter
 }
 
@@ -21,33 +21,33 @@ function query(filterBy = {}) {
     if (!filterBy.maxPrice) filterBy.maxPrice = Infinity
     const regExp = new RegExp(filterBy.txt, 'i')
     return storageService.query(STORAGE_KEY)
-        .then(cars => {
-            return cars.filter(car =>
-                regExp.test(car.vendor) &&
-                car.price <= filterBy.maxPrice
+        .then(contacts => {
+            return contacts.filter(contact =>
+                regExp.test(contact.vendor) &&
+                contact.price <= filterBy.maxPrice
             )
         })
 }
 
-function getById(carId) {
-    return storageService.get(STORAGE_KEY, carId)
+function getById(contactId) {
+    return storageService.get(STORAGE_KEY, contactId)
 }
-function remove(carId) {
+function remove(contactId) {
     // return Promise.reject('Not now!')
-    return storageService.remove(STORAGE_KEY, carId)
+    return storageService.remove(STORAGE_KEY, contactId)
 }
-function save(car) {
-    if (car._id) {
-        return storageService.put(STORAGE_KEY, car)
+function save(contact) {
+    if (contact._id) {
+        return storageService.put(STORAGE_KEY, contact)
     } else {
         // when switching to backend - remove the next line
-        car.owner = userService.getLoggedinUser()
-        return storageService.post(STORAGE_KEY, car)
+        contact.owner = userService.getLoggedinUser()
+        return storageService.post(STORAGE_KEY, contact)
     }
 }
 
 
-function getEmptyCar() {
+function getEmptyContact() {
     return {
         vendor: 'Susita-' + (Date.now() % 1000),
         price: utilService.getRandomIntInclusive(1000, 9000),
