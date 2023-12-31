@@ -5,6 +5,8 @@ const { Route, Routes } = ReactRouterDOM
 import { HomePage } from './pages/HomePage.jsx'
 import { ContactDetails } from './cmps/ContactDetails.jsx'
 import { ContactIndex } from './pages/ContactIndex.jsx'
+import { AppHeader } from './cmps/AppHeader.jsx'
+
 
 
 export class App extends React.Component {
@@ -13,6 +15,7 @@ export class App extends React.Component {
         return (
             <Router>
                 <section className="main-layout app">
+                    <AppHeader/>
                     <main>
                         <Routes>
                             <Route element={<HomePage />} path="/" />
