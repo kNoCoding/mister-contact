@@ -15,6 +15,7 @@ export class App extends React.Component {
                     <main>
                         <Routes>
                             <Route element={<HomePage />} path="/" />
+                            <Route element={<ContactDetails />} path="/" />
                             <Route element={<ContactIndex />} path="/contact" />
 
                         </Routes>
